@@ -1,0 +1,14 @@
+version: '2'
+services:
+  streamsets:
+    image: streamsets/datacollector
+    container_name: streamset
+    ports:
+      - "18630:18630"
+    networks:
+      - my-proxy-net
+
+networks:
+  my-proxy-net:
+    external:
+      name: dse

@@ -1,0 +1,21 @@
+version: '2'
+services:
+
+  mysql:
+    image: mysql:5.6
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./my.cnf:/etc/mysql/conf.d/myx.cnf
+    command: ["mysqld", "--log-bin=mysql-bin", "--server-id=1", "--skip-grant-tables"]
+    networks:
+      - my-proxy-net
+
+networks:
+  my-proxy-net:
+    external:
+      name: dse
